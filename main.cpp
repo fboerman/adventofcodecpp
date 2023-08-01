@@ -45,7 +45,7 @@ int day2() {
     ifstream stream("/home/frank/CLionProjects/adventofcodecpp/input_files/day2.txt");
     string line;
 
-    int score = 0;
+    int score = 0, score_2 = 0;
     while(getline(stream, line)) {
         istringstream iss(line);
         char opp_c, me_c;
@@ -61,8 +61,8 @@ int day2() {
         // or turn around ABC with mapping A->0, B -> 1, C->2 then f(i-1) == opp then win otherwise loss
         // in which 0 is rock 1 is paper 2 is scissors
 
-        int i = me-1;
-        int wins_from = (i%3+3)%3;
+        auto f = [](int i) { return (i%3+3)%3;};
+        int wins_from = f(me-1);
         // score for game itself
         if(opp == wins_from){
             //win!
@@ -75,10 +75,32 @@ int day2() {
         // score for playing
         score += me + 1;
 
+        // for part two me_c is actually the result of the round
+        // then figure out what to do by using the same trick
+        int me2;
+        switch(me_c) {
+            case 'X':
+                // need to lose
+                me2 = f(opp-1);
+                break;
+            case 'Y':
+                // need to draw
+                me2 = opp;
+                score_2 += 3;
+                break;
+            case 'Z':
+                // need to win
+                me2 = f(opp+1);
+                score_2 += 6;
+                break;
+        }
+
+        score_2 += me2 + 1;
+
     }
 
     cout << "Score: " << score << endl;
-
+    cout << "Score2: " << score_2 << endl;
     return 0;
 }
 
