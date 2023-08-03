@@ -41,7 +41,7 @@ int day1() {
 }
 
 int day2() {
-    cout << "day1" << endl;
+    cout << "day2" << endl;
     ifstream stream("/home/frank/CLionProjects/adventofcodecpp/input_files/day2.txt");
     string line;
 
@@ -104,7 +104,38 @@ int day2() {
     return 0;
 }
 
+int day3() {
+    cout << "day3" << endl;
+    ifstream stream("/home/frank/CLionProjects/adventofcodecpp/input_files/day3.txt");
+    string line;
+
+    int sum_priorities = 0;
+    while(getline(stream, line)) {
+        vector<char> rucksack1 = vector(line.begin(), line.end()-(line.length()/2));
+        sort(rucksack1.begin(), rucksack1.end());
+        vector<char> rucksack2 = vector(line.begin()+(line.length()/2), line.end());
+        sort(rucksack2.begin(), rucksack2.end());
+        vector<char> intersections;
+        set_intersection(rucksack1.begin(), rucksack1.end(),
+                         rucksack2.begin(), rucksack2.end(),
+                         back_inserter(intersections));
+
+        int prio = int(intersections[0]);
+        if((prio >= 97) && (prio <= 122)) {
+            // lower case
+            sum_priorities += prio - 96;
+        } else {
+            // upper case
+            sum_priorities += prio - 38;
+        }
+    }
+
+    cout << "sum of priorities of double items is " << sum_priorities << endl;
+
+    return 0;
+}
+
 
 int main() {
-    return day2();
+    return day3();
 }
