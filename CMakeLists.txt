@@ -14,6 +14,7 @@ add_executable(adventofcode main.cpp
         day2.cpp
         day3.cpp
         day4.cpp
-        days.h)
+        days.h
+        day5.cpp)
 
 #target_link_libraries(adventofcode PRIVATE Arrow::arrow_shared)
