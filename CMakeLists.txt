@@ -9,6 +9,11 @@ set(CMAKE_BUILD_TYPE Debug)
 #message(STATUS "Arrow version: ${ARROW_VERSION}")
 #message(STATUS "Arrow SO version: ${ARROW_FULL_SO_VERSION}")
 
-add_executable(adventofcode main.cpp)
+add_executable(adventofcode main.cpp
+        day1.cpp
+        day2.cpp
+        day3.cpp
+        day4.cpp
+        days.h)
 
 #target_link_libraries(adventofcode PRIVATE Arrow::arrow_shared)
