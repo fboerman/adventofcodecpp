@@ -10,31 +10,29 @@ using namespace std;
 
 int day1() {
     cout << "day1" << endl;
-    ifstream stream("/home/frank/CLionProjects/adventofcode/input_files/day1.txt");
+    ifstream stream("/home/frank/CLionProjects/adventofcodecpp/input_files/day1.txt");
     string line;
-    vector<int> elves = {};
-
-    int max_calories = 0;
-    int current_calories = 0;
+    int calibration_value = 0;
     while(getline(stream, line)) {
-        if(!line.empty()) {
-            istringstream iss(line);
-            int calories;
-            iss >> calories;
-            current_calories += calories;
-        } else {
-            if(current_calories>max_calories){
-                max_calories = current_calories;
+        vector<char> n;
+        for(char& c : line){
+            if(int(c) >= 48 && int(c) <= 57) {
+                if(n.size() < 2) {
+                    n.push_back(c);
+                } else {
+                    n[1] = c;
+                }
+
             }
-            elves.push_back(current_calories);
-            current_calories = 0;
         }
+        if(n.size() == 1){
+            n.push_back(n[0]);
+        }
+        std::cout << string(n.begin(), n.end()) << std::endl;
+        calibration_value += atoi(string(n.begin(), n.end()).c_str());
     }
 
-    cout << "maximum calories is " << max_calories << endl;
-
-    sort(elves.begin(), elves.end(), greater<int>());
-    cout << "sum of top 3 is " << reduce(elves.begin(), elves.begin() + 3) << endl;
+    cout << "The calibration number is " << calibration_value << endl;
 
 
     return 0;

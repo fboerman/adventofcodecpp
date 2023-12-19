@@ -11,11 +11,6 @@ set(CMAKE_BUILD_TYPE Debug)
 
 add_executable(adventofcode main.cpp
         day1.cpp
-        day2.cpp
-        day3.cpp
-        day4.cpp
-        days.h
-        day5.cpp
-        day6.cpp)
+        days.h)
 
 #target_link_libraries(adventofcode PRIVATE Arrow::arrow_shared)

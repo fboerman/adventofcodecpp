@@ -2,5 +2,5 @@
 
 
 int main() {
-    return day6(14);
+    return day1();
 }
